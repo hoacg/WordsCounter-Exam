@@ -4,27 +4,32 @@ public class WordsCounter {
             " hôm nay tôi thấy hoa vàng",
             "hoa vàng trên cỏ xanh, hoa vàng trên cỏ xanh"
     };
+    static final int NOT_FOUND = 0;
 
     public static int count(String searchText) {
-        final int NOT_FOUND = 0;
-        final int SEARCH_TEXT_LENGTH = searchText.length();
-
-        int count = NOT_FOUND;
+        int countSum = NOT_FOUND;
 
         for (int index = 0; index < array.length; index++) {
-            final String currentText = array[index];
-            final int STOP_INDEX = currentText.length() - SEARCH_TEXT_LENGTH + 1;
-
-            if (currentText.length() < SEARCH_TEXT_LENGTH) {
-                return NOT_FOUND;
-            }
-            for (int firstIndex = 0 ; firstIndex < STOP_INDEX; firstIndex++) {
-                int lastIndex = firstIndex + SEARCH_TEXT_LENGTH;
-                String subText = currentText.substring(firstIndex, lastIndex);
-                if (searchText.equals(subText)) count++;
-            }
+            countSum += countMatch(searchText, array[index]);
         }
 
+        return countSum;
+    }
+
+    public static int countMatch(String searchText, String sourceText) {
+        final int SEARCH_TEXT_LENGTH = searchText.length();
+        final int STOP_INDEX = sourceText.length() - SEARCH_TEXT_LENGTH + 1;
+
+        if (sourceText.length() < SEARCH_TEXT_LENGTH) {
+            return NOT_FOUND;
+        }
+
+        int count = NOT_FOUND;
+        for (int firstIndex = 0 ; firstIndex < STOP_INDEX; firstIndex++) {
+            int lastIndex = firstIndex + SEARCH_TEXT_LENGTH;
+            String subText = sourceText.substring(firstIndex, lastIndex);
+            if (searchText.equals(subText)) count++;
+        }
         return count;
     }
 }
