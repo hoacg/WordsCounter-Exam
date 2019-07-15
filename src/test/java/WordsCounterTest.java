@@ -15,7 +15,7 @@ public class WordsCounterTest {
 
     @Test
     void testCount2() {
-        String search = "hoa vàng trên cỏ xanh";
+        String search = "hoa    vàng    trên  cỏ xanh";
         int result = WordsCounter.count(search);
         int expected = 3;
         assertEquals(expected, result, "count `hoa vàng trên cỏ xanh` should return 3");

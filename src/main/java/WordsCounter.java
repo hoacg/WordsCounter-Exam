@@ -44,6 +44,7 @@ public class WordsCounter {
                 spaceChar++;
             } else if (word.charAt(i) != ' ') {
                 newWord += word.charAt(i);
+                spaceChar = 0;
             }
         }
         return newWord;
