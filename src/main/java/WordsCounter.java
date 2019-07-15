@@ -16,7 +16,8 @@ public class WordsCounter {
         return countSum;
     }
 
-    public static int countMatch(String searchText, String sourceText) {
+    public static int countMatch(String inputText, String sourceText) {
+        String searchText = wordTrim(inputText);
         final int SEARCH_TEXT_LENGTH = searchText.length();
         final int STOP_INDEX = sourceText.length() - SEARCH_TEXT_LENGTH + 1;
 
@@ -31,5 +32,20 @@ public class WordsCounter {
             if (searchText.equals(subText)) count++;
         }
         return count;
+    }
+
+    public static String wordTrim(String word) {
+        word = word.trim();
+        String newWord = "";
+        int spaceChar = 0;
+        for (int i = 0 ; i < word.length(); i++) {
+            if (word.charAt(i) == ' ' && spaceChar < 1) {
+                newWord += word.charAt(i);
+                spaceChar++;
+            } else if (word.charAt(i) != ' ') {
+                newWord += word.charAt(i);
+            }
+        }
+        return newWord;
     }
 }

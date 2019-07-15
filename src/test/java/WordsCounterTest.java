@@ -6,7 +6,7 @@ public class WordsCounterTest {
 
     @Test
     public void testCount1() {
-        String search = "cỏ xanh";
+        String search = "   cỏ       xanh";
         int result = WordsCounter.count(search);
         int expected = 3;
 
@@ -23,7 +23,7 @@ public class WordsCounterTest {
 
     @Test
     public void testCountZero() {
-        String search = "hoa xanh";
+        String search = "hoa  xanh";
         int result = WordsCounter.count(search);
         int expected = 0;
 
